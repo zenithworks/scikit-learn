@@ -74,3 +74,17 @@ jobs:
       py35_32:
         PYTHON_VERSION: '3.5'
         PYTHON_ARCH: '32'
+
+- job: GitHub Release
+  displayName: Release to GitHub
+  dependsOn: 
+  - Linux
+  - macOS
+  - Windows
+  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/0.'))
+  steps:
+  - task: GitHubRelease@0
+    displayName: 'GitHub release (create)'
+    inputs:
+      gitHubConnection: 'github-zenithworks'
+      title: 'SciKit Release'
