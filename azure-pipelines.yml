@@ -75,7 +75,7 @@ jobs:
         PYTHON_VERSION: '3.5'
         PYTHON_ARCH: '32'
 
-- job: GitHub Release
+- job: GitHub_Release
   displayName: Release to GitHub
   dependsOn: 
   - Linux
