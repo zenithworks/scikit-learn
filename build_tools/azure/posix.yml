@@ -5,6 +5,7 @@ parameters:
 
 jobs:
 - job: ${{ parameters.name }}
+  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/0.'))
   pool:
     vmImage: ${{ parameters.vmImage }}
   variables:
