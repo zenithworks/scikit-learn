@@ -5,7 +5,6 @@ parameters:
 
 jobs:
 - job: ${{ parameters.name }}
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/0.'))
   pool:
     vmImage: ${{ parameters.vmImage }}
   variables:
@@ -21,30 +20,31 @@ jobs:
 
   steps:
     - bash: echo "##vso[task.prependpath]$CONDA/bin"
-      displayName: Add conda to PATH
-      condition: eq(variables['DISTRIB'], 'conda')
-    - script: |
-        build_tools/azure/install.sh
-      displayName: 'Install'
-    - script: |
-        build_tools/azure/test_script.sh
-      displayName: 'Test Library'
-    - script: |
-        build_tools/azure/test_docs.sh
-      displayName: 'Test Docs'
-    - script: |
-        build_tools/azure/test_pytest_soft_dependency.sh
-      displayName: 'Test Soft Dependency'
-      condition: and(eq(variables['CHECK_PYTEST_SOFT_DEPENDENCY'], 'true'), eq(variables['DISTRIB'], 'conda'))
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFiles: '$(TEST_DIR)/$(JUNITXML)'
-        testRunTitle: ${{ format('{0}-$(Agent.JobName)', parameters.name) }}
-      displayName: 'Publish Test Results'
-      condition: succeededOrFailed()
-    - script: |
-        build_tools/azure/upload_codecov.sh
-      condition: and(succeeded(), eq(variables['COVERAGE'], 'true'), eq(variables['DISTRIB'], 'conda'))
-      displayName: 'Upload To Codecov'
-      env:
-        CODECOV_TOKEN: $(CODECOV_TOKEN)
+#      displayName: Add conda to PATH
+#      condition: eq(variables['DISTRIB'], 'conda')
+#    - script: |
+#        build_tools/azure/install.sh
+#      displayName: 'Install'
+#    - script: |
+#        build_tools/azure/test_script.sh
+#      displayName: 'Test Library'
+#    - script: |
+#        build_tools/azure/test_docs.sh
+#      displayName: 'Test Docs'
+#    - script: |
+#        build_tools/azure/test_pytest_soft_dependency.sh
+#      displayName: 'Test Soft Dependency'
+#      condition: and(eq(variables['CHECK_PYTEST_SOFT_DEPENDENCY'], 'true'), eq(variables['DISTRIB'], 'conda'))
+#    - task: PublishTestResults@2
+#      inputs:
+#        testResultsFiles: '$(TEST_DIR)/$(JUNITXML)'
+#        testRunTitle: ${{ format('{0}-$(Agent.JobName)', parameters.name) }}
+#      displayName: 'Publish Test Results'
+#      condition: succeededOrFailed()
+#    - script: |
+#        build_tools/azure/upload_codecov.sh
+#      condition: and(succeeded(), eq(variables['COVERAGE'], 'true'), eq(variables['DISTRIB'], 'conda'))
+#      displayName: 'Upload To Codecov'
+#      env:
+#        CODECOV_TOKEN: $(CODECOV_TOKEN)
+#
