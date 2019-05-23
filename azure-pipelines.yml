@@ -95,5 +95,5 @@ jobs:
       title: 'SciKit Release' 
       releaseNotesSource: input
       releaseNotes: |
-       ##Scikit Releases:
-       See whats new in scikit: https://scikit-learn.org/stable/whats_new.html
+       Scikit Releases $(Build.SourceBranch)
+       See whats new in scikit https://scikit-learn.org/stable/whats_new.html
