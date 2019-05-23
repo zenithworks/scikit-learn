@@ -92,8 +92,8 @@ jobs:
     displayName: 'GitHub release (create)'
     inputs:
       gitHubConnection: 'github-zenithworks'
-      title: 'SciKit Release' $(Build.SourceBranch) 
+      title: SciKit Release version $(Build.SourceBranchName) 
       releaseNotesSource: input
-      releaseNotes: |
+      releaseNotes: | 
        Scikit Releases $(Build.SourceBranch)
-       See whats new in scikit https://scikit-learn.org/stable/whats_new.html
+       See whats new in scikit https://scikit-learn.org/stable/whats_new/v$(Build.SourceBranchName).html
