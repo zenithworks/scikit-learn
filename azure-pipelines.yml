@@ -92,7 +92,7 @@ jobs:
     displayName: 'GitHub release (create)'
     inputs:
       gitHubConnection: 'github-zenithworks'
-      title: 'SciKit Release' 
+      title: 'SciKit Release' $(Build.SourceBranch) 
       releaseNotesSource: input
       releaseNotes: |
        Scikit Releases $(Build.SourceBranch)
