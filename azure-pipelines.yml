@@ -1,4 +1,8 @@
 # Adapted from https://github.com/pandas-dev/pandas/blob/master/azure-pipelines.yml
+trigger:
+  branches:
+    include:
+    - '*'  
 jobs:
 - template: build_tools/azure/posix.yml
   parameters:
