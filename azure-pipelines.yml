@@ -3,6 +3,7 @@ trigger:
   branches:
     include:
     - '*'  
+    - refs/tags/*
 jobs:
 - template: build_tools/azure/posix.yml
   parameters:
